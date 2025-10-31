@@ -3,6 +3,8 @@
 A lightweight, **client-side password manager** and **pattern-based password generator** built using **React**.  
 This project helps users securely generate, save, and manage passwords — all stored locally in the browser with **no backend dependency**.
 
+🌐 Live Site: https://pattern-password-generator.netlify.app/
+
 ---
 
 ## 🚀 Features
