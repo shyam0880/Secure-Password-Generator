@@ -110,6 +110,16 @@ function App() {
           </li>
         </ul>
       </nav>
+      <nav className="nav_bar_mob">
+        <ul className="nav_list_mob">
+          <li onClick={() => setNavStatus(0)}>Home</li>
+          <li onClick={() => setNavStatus(1)}>Generate</li>
+          <li onClick={() => setNavStatus(2)}>Passwords</li>
+          <li onClick={() => setpopup(!popup)}>
+            {activeUser ? `Logout` : "Login"}
+          </li>
+        </ul>
+      </nav>
 
       {popup && <Login popup={popup} setpopup={setpopup} />}
 

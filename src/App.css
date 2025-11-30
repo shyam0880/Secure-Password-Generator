@@ -115,6 +115,28 @@ h1 {
   gap: 100px;
 }
 
+.nav_bar_mob{
+  position: fixed;
+  bottom: 5px;
+  width: 95%;
+  background: white;
+  color: black;
+  border-radius: 25px;
+  z-index: 1;
+  display: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.nav_bar_mob .nav_list_mob{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 40px;
+  margin: auto;
+  padding: 0 10px;
+}
+
 .nav_bar .nav_list li{
   cursor: pointer;
   transition: all 0.3s ease;
@@ -169,13 +191,6 @@ h1 {
   text-align: left;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.detail_box .title h2 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: bold;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
 }
 
 .detail_box .title span {
@@ -382,17 +397,19 @@ h1 {
   flex-direction: column;
   align-items: center;
 }
+.form-container .form .log_sec{
+  width: 100%;
+}
 
 .form-container .form  .botton_list{
   margin: 20px 5px;
 }
 
 .form-container .form .input-group {
-  width: 90%;
+  width: 100%;
   margin: 0.5rem 0;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  /* border: 2px solid red; */
   overflow: hidden;
 }
 
@@ -463,8 +480,7 @@ h1 {
 +-----------------------------------+ 
 */
 .container .home_box {
-  /* background: #fdfdfd; */
-  margin-top: 50px;
+  margin-top: 30px;
   height: 80%;
   width: 95%;
   padding: 2rem;
@@ -560,4 +576,112 @@ h1 {
 
 .container .home_box .bottom_screen{
   color: white;
+}
+
+@media (max-width: 768px) {
+  /* -----------navbar----------- */
+  .nav_bar h1{
+      font-size: 1.2rem;
+  }
+
+  .nav_bar .nav_list{
+    display: none;
+  }
+  .nav_bar_mob{
+    display: block;
+  }
+  /* -------------homepage------------ */
+  .container .home_box .home_screen{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container .home_box .home_screen h1{
+    font-size: 25px;
+    padding-top: 25px;
+    text-align: center;
+  }
+  .container .home_box .home_screen p{
+    font-size: 18px;
+    margin: 30px 10px 20px 10px;
+    text-align: justify;
+  }
+  .container .home_box .middle_screen{
+    display: flex;
+    flex-direction: column;
+  }
+  .container .home_box .middle_screen .screen_left,
+  .container .home_box .middle_screen .screen_right{
+    width: 100%;
+  }
+  .container .home_box .middle_screen .screen_left h2,
+  .container .home_box .middle_screen .screen_right h2{
+    text-align: left;
+    margin: 10px;
+    font-size: 20px;
+  }
+  .container .home_box .warning_screen .warning-box ul{
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+  }
+  .container .home_box .warning_screen .warning-box li {
+    list-style-type: disc;
+  }
+
+  .container .home_box .warning_screen h2{
+    font-size: 20px;
+  }
+  /* -------------detail box------------ */
+  .detail_box {
+    max-width: 300px;
+  }
+  .detail_box .title {
+    margin-top: .2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .detail_box input,
+  .password_box input {
+    height: 10px;
+    margin-top: .8rem;
+  }
+
+  /* -------------password section------------ */
+  .password_box {
+    max-width: 300px;
+  }
+  .password-item .info .label{
+    display: flex;
+    flex-direction: column;
+  }
+  .site-label, .pwd-label {
+    width: 100px;
+    font-size: .9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #555;
+    letter-spacing: 0.5px;
+  }
+
+  /* -------------login/logout------------ */
+  .form-container .form {
+    width: 75%;
+    margin: 0;
+  }
+
+  .form-container .form .log_sec{
+    width: 100%;
+  }
+  .form-container .form .input-group {
+    width: 98%;
+    padding-right:10px;
+    /* border: 2px solid red; */
+  }
+  .form-container .form .input-group input {
+    width: 85%;
+  }
 }

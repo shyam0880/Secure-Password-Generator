@@ -45,13 +45,13 @@ const Login = ({ popup, setpopup }) => {
       <form className="form" onSubmit={handleSubmit}>
         {/* IF USER IS LOGGED IN */}
         {activeUser ? (
-          <>
+          <div className="log_sec">
             <h1>Welcome, {activeUser} 👋</h1>
             <div className="botton_list">
               <button
                 type="button"
                 onClick={logout}
-                style={{ marginRight: "10px", background:'#fff' }}
+                style={{ margin: "10px", background:'#fff' }}
               >
                 Logout
               </button>
@@ -63,9 +63,9 @@ const Login = ({ popup, setpopup }) => {
                 Delete My Account
               </button>
             </div>
-          </>
+          </div>
         ) : (
-          <>
+          <div className="log_sec">
             {/* LOGIN / SIGNUP FORM */}
             <h1>{isSignUpMode ? "Sign Up" : "Login"}</h1>
 
@@ -109,7 +109,7 @@ const Login = ({ popup, setpopup }) => {
                 {isSignUpMode ? "Sign in" : "Sign up"}
               </a>
             </p>
-          </>
+          </div>
         )}
 
         <span
