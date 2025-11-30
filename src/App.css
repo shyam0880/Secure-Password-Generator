@@ -18,8 +18,6 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-
-
 .container {
   height: 100vh;
   display: flex;
@@ -80,10 +78,24 @@ h1 {
   border-radius: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.327);
   
-  /* New properties for blurred background */
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* for Safari */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* optional, adds a frosted glass effect */
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.2); 
+  transition: opacity 0.4s ease;
+  opacity: 1;
+}
+
+.password_box {
+  max-width: 600px;
+  width: 100%;
+  max-height: 60%;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.327);
+  
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.2); 
   transition: opacity 0.4s ease;
   opacity: 1;
 }
@@ -105,19 +117,110 @@ h1 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.detail_box .title span{
-  font-size: 12px;
+.detail_box .title h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
 }
 
-.detail_box input {
-  display: block;
-  width: 98%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
+.detail_box .title span {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.detail_box input,
+.password_box input {
+  width: 90%;
+  padding: 0.6rem;
+  margin-top: 1rem;
   border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
   text-align: center;
+}
+
+.password-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-radius: 10px;
+  height: 60%;
+  overflow: auto;
+}
+
+.password-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.password-item {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+
+.password-item .info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 0.4rem;
+}
+
+.password-item .info .label{
+  display: flex;
+}
+
+.site-label, .pwd-label {
+  width: 120px;
+  font-size: .9rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #555;
+  letter-spacing: 0.5px;
+}
+
+.site {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.pwd {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #222;
+}
+
+.password-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toggle-btn {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.75rem;
+  border: none;
+  border-radius: 0.35rem;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background: #2563eb;
 }
 
 .button-row {
@@ -160,6 +263,30 @@ h1 {
   word-break: break-all;
 }
 
+
+/* Button */
+.delete-btn {
+  padding: 0.35rem 0.7rem;
+  border: none;
+  background: #ef4444;
+  color: white;
+  border-radius: 0.35rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+/* Empty state */
+.empty, .no-login {
+  text-align: center;
+  opacity: 0.8;
+}
+
 /* 
 +-----------------------------------+
 | login css                         |
@@ -200,6 +327,10 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.form-container .form  .botton_list{
+  margin: 20px 5px;
 }
 
 .form-container .form .input-group {

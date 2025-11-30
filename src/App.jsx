@@ -11,11 +11,11 @@ function App() {
   const [copied, setCopied] = useState(false);
   const [navStatus, setNavStatus] = useState(0);
   const [search, setSearch] = useState("");
-  const [popup, setpopup] = useState(true);
+  const [popup, setpopup] = useState(false);
+  const [visiblePasswords, setVisiblePasswords] = useState({});
 
   const symbols = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "="];
 
-  // ✅ Get everything from context
   const {
     activeUser,
     passwords,
@@ -23,7 +23,6 @@ function App() {
     removePasswordEntry,
   } = usePassword();
 
-  // --- Password generator logic ---
   function buf2hex(buffer) {
     return Array.prototype.map
       .call(new Uint8Array(buffer), (x) => ("00" + x.toString(16)).slice(-2))
@@ -78,7 +77,6 @@ function App() {
     setTimeout(() => setCopied(false), 1500);
   }
 
-  // --- Store new password for this user ---
   const handleAddPassword = () => {
     if (!activeUser) {
       alert("Please log in to save a password.");
@@ -94,13 +92,11 @@ function App() {
     setPassword("");
   };
 
-  // --- Filter user passwords ---
   const userPasswords = activeUser ? passwords[activeUser] || [] : [];
   const filtered = userPasswords.filter((item) =>
     item.site.toLowerCase().includes(search.toLowerCase())
   );
 
-  // --- JSX ---
   return (
     <div className="container">
       <nav className="nav_bar">
@@ -117,14 +113,13 @@ function App() {
 
       {popup && <Login popup={popup} setpopup={setpopup} />}
 
-      {/* Password Generator */}
       {navStatus === 0 && (
         <div className="home_box">
           <div className="home_screen">
             <h1>Pattern Password Generator</h1>
-
             <p>
-              <strong>Welcome!</strong> This is a simple and secure password manager that lets you
+            <strong>Welcome!</strong><br/>
+               This is a simple and secure password manager that lets you
               generate and store strong passwords using your own custom pattern and master key.
             </p>
           </div>
@@ -163,7 +158,7 @@ function App() {
             </div>
           </div>
           <div className="warning_screen">
-            <h2>⚠️ Important Warnings & Risks</h2>
+            <h2>⚠️ Important Warnings & Risks ⚠️</h2>
             <div className="warning-box">
               <ul>
                 <li>
@@ -256,41 +251,72 @@ function App() {
         </div>
       )}
 
-      {/* Password List */}
       {navStatus === 2 && (
-        <div className={`detail_box`}>
-          <h1>{activeUser ? `${activeUser}'s Passwords` : "Your Passwords"}</h1>
+      <div className="password_box">
+        <div className="title">
+          <h2>{activeUser ? `${activeUser}'s Passwords` : "Your Passwords"}</h2>
+          <span>Manage and search your saved passwords</span>
+        </div>
 
-          {!activeUser ? (
-            <p>Please log in to view your saved passwords.</p>
-          ) : (
-            <>
-              <input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="e.g. Facebook, WhatsApp..."
-              />
-              <ul>
-                {filtered.length > 0 ? (
-                  filtered.map((item, index) => (
-                    <li key={index}>
-                      <strong>{item.site}</strong>: {item.password}
+        {!activeUser ? (
+          <p className="no-login">Please log in to view your saved passwords.</p>
+        ) : (
+          <>
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search by site (e.g., Facebook, WhatsApp...)"
+            />
+
+            <ul className="password-list">
+              {filtered.length > 0 ? (
+                filtered.map((item, index) => (
+                  <li className="password-item" key={index}>
+                    <div className="info">
+                      <div className="label">
+                        <span className="site-label">Site:</span>
+                        <strong className="site">{item.site}</strong>
+                      </div>
+                      <div className="label">
+                        <span className="pwd-label">Password:</span>
+                        <span className="pwd">
+                          {visiblePasswords[item.site] ? item.password : "••••••••"}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="password-actions">
                       <button
+                        className="toggle-btn"
+                        onClick={() =>
+                          setVisiblePasswords((prev) => ({
+                            ...prev,
+                            [item.site]: !prev[item.site],
+                          }))
+                        }
+                      >
+                        {visiblePasswords[item.site] ? "Hide" : "Show"}
+                      </button>
+
+                      <button
+                        className="delete-btn"
                         onClick={() => removePasswordEntry(item.site)}
-                        style={{ marginLeft: "10px" }}
                       >
                         Delete
                       </button>
-                    </li>
-                  ))
-                ) : (
-                  <li>No passwords found.</li>
-                )}
-              </ul>
-            </>
-          )}
-        </div>
+                    </div>
+                  </li>
+
+                ))
+              ) : (
+                <li className="empty">No passwords found.</li>
+              )}
+            </ul>
+          </>
+        )}
+      </div>
       )}
+
     </div>
   );
 }

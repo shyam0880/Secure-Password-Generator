@@ -47,20 +47,22 @@ const Login = ({ popup, setpopup }) => {
         {activeUser ? (
           <>
             <h1>Welcome, {activeUser} 👋</h1>
-            <button
-              type="button"
-              onClick={logout}
-              style={{ marginRight: "10px" }}
-            >
-              Logout
-            </button>
-            <button
-              type="button"
-              onClick={handleDelete}
-              style={{ backgroundColor: "red", color: "white" }}
-            >
-              Delete My Account
-            </button>
+            <div className="botton_list">
+              <button
+                type="button"
+                onClick={logout}
+                style={{ marginRight: "10px", background:'#fff' }}
+              >
+                Logout
+              </button>
+              <button
+                type="button"
+                onClick={handleDelete}
+                style={{ backgroundColor: "red", color: "white" }}
+              >
+                Delete My Account
+              </button>
+            </div>
           </>
         ) : (
           <>
