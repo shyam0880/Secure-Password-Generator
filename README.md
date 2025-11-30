@@ -72,7 +72,7 @@ cd pattern-password-manager
 npm install
 
 # 4. Start development server
-npm start
+npm run dev
 ```
 Then open `http://localhost:5173` (or as shown in terminal).
 
@@ -80,16 +80,15 @@ Then open `http://localhost:5173` (or as shown in terminal).
 
 ## 🧱 Project Structure
 ```
+public/
+ ├── Image/
+ |     └── BackgroundImage.jpg
 src/
  ├── App.jsx                 # Main UI and routing
  ├── PasswordContext.jsx     # Global user & password state management
  ├── Login.jsx               # Login / Signup / Delete account UI
- ├── components/
- │    └── Home.jsx           # Home info & project warning section
- ├── assets/
- │    └── BackgroundImage.jpg
- ├── styles/
- │    └── App.css
+ ├── main.jsx                # Actual Logic and pages
+ ├── App.css                
  └── ...
 ```
 
